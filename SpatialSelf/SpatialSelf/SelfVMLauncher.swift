@@ -15,26 +15,19 @@ import Darwin
 final class SelfVMLauncher {
   static let shared = SelfVMLauncher()
 
-// #if false
-
   let io = Terminal_IO_Redirector()
-//   #endif
   private var started = false
 
   func start() {
     guard !started else { return }
     started = true
-    
+
     let m = TerminalModel.shared
     m.writeLine("Welcome to the terminal.")
     m.writeLine("Type something and press Return.")
-//    let line = await m.readLine()
-//    m.writeLine("You typed: \(line)")
 
- 
+#if true // SPATIALSELF_LINK_VM
     io.start()
-
-    // Wire TerminalView submits into the VM's stdin pipe.
     Task { @MainActor in
       TerminalModel.shared.onSubmit = { [io] line in
         io.writeToStdin(line)
@@ -54,9 +47,11 @@ final class SelfVMLauncher {
         let argv = UnsafeMutablePointer<UnsafeMutablePointer<CChar>?>(OpaquePointer(p))
         _ = self_vm_main(1, argv)
       }
-      _ = self  // keep launcher alive for the VM's lifetime
+      _ = self
     }
-
+#else
+    m.writeLine("[A/B TEST: Self VM not linked]")
+#endif
   }
 }
 
