@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		AABB001000000000000000B1 /* Views in Frameworks */ = {isa = PBXBuildFile; productRef = AABB001000000000000000A1 /* Views */; };
 		AABB001000000000000000B2 /* DavesUtilities in Frameworks */ = {isa = PBXBuildFile; productRef = AABB001000000000000000A2 /* DavesUtilities */; };
-		AABB001000000000000000B3 /* Self.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = AABB001000000000000000C3 /* Self.xcframework */; };
+		AABB001000000000000000B3 /* SelfVM.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = AABB001000000000000000C3 /* SelfVM.xcframework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AABB001000000000000000C3 /* Self.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Self.xcframework; path = ../Frameworks/Self.xcframework; sourceTree = "<group>"; };
+		AABB001000000000000000C3 /* SelfVM.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SelfVM.xcframework; path = ../Frameworks/SelfVM.xcframework; sourceTree = "<group>"; };
 		BCD26E3E2FBC04AA002B5A13 /* SpatialSelf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpatialSelf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCD2724F2FBC0E32002B5A13 /* SpatialSelf.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SpatialSelf.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -46,7 +46,7 @@
 			files = (
 				AABB001000000000000000B1 /* Views in Frameworks */,
 				AABB001000000000000000B2 /* DavesUtilities in Frameworks */,
-				AABB001000000000000000B3 /* Self.xcframework in Frameworks */,
+				AABB001000000000000000B3 /* SelfVM.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,7 +58,7 @@
 			children = (
 				BCD26E402FBC04AA002B5A13 /* SpatialSelf */,
 				BCD26E412FBC04AA002B5A13 /* Packages */,
-				AABB001000000000000000C3 /* Self.xcframework */,
+				AABB001000000000000000C3 /* SelfVM.xcframework */,
 				BCD26E3F2FBC04AA002B5A13 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,7 +90,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BCD26E4F2FBC04AB002B5A13 /* Build configuration list for PBXNativeTarget "SpatialSelf" */;
 			buildPhases = (
-				AABB001000000000000000D1 /* Run Script: build Self.xcframework */,
+				AABB001000000000000000D1 /* Run Script: build SelfVM.xcframework */,
 				BCD26E3A2FBC04AA002B5A13 /* Sources */,
 				BCD26E3B2FBC04AA002B5A13 /* Frameworks */,
 				BCD26E3C2FBC04AA002B5A13 /* Resources */,
@@ -162,7 +162,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		AABB001000000000000000D1 /* Run Script: build Self.xcframework */ = {
+		AABB001000000000000000D1 /* Run Script: build SelfVM.xcframework */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -173,7 +173,7 @@
 			inputPaths = (
 				"$(SRCROOT)/../scripts/build-self-vm.sh",
 			);
-			name = "Run Script: build Self.xcframework";
+			name = "Run Script: build SelfVM.xcframework";
 			outputFileListPaths = (
 			);
 			outputPaths = (

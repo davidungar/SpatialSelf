@@ -2,14 +2,20 @@
 //  SelfVMLauncher.swift
 //  SpatialSelf
 //
-//  Owns the Terminal_IO_Redirector pipes, hands their fds to the VM via
-//  self_vm_set_io_fds(), then spawns a detached thread that calls
-//  self_vm_main(). Stdin written by TerminalView reaches the VM through
-//  the redirector's writeToStdin() bridge.
+//  Owns the Terminal_IO_Redirector pipes, hands their fds to the statically
+//  linked Self VM via self_vm_set_io_fds(), then spawns a detached thread
+//  that calls self_vm_main(). Stdin written by TerminalView reaches the VM
+//  through the redirector's writeToStdin() bridge.
+//
+//  Self.framework is linked statically (via SelfVM.xcframework in the target's
+//  Frameworks build phase) — see notes in `../self64/vm64`
+//  about the heap-at-24GB / timer-off requirements that make this safe on
+//  visionOS.
 //
 
 import Foundation
-import Views   // ReusableViews — TerminalModel
+import SwiftUI  // for Color in error messages
+import Views    // ReusableViews — TerminalModel
 import Darwin
 
 final class SelfVMLauncher {
@@ -26,33 +32,30 @@ final class SelfVMLauncher {
     m.writeLine("Welcome to the terminal.")
     m.writeLine("Type something and press Return.")
 
-#if true // SPATIALSELF_LINK_VM
     io.start()
-    Task { @MainActor in
-      TerminalModel.shared.onSubmit = { [io] line in
-        io.writeToStdin(line)
-      }
+    TerminalModel.shared.onSubmit = { [io] line in
+      io.writeToStdin(line)
     }
-
     let stdinFD  = io.stdinReadFD ?? -1
     let stdoutFD = io.outputFD(for: .selfStdout)
     let stderrFD = io.outputFD(for: .selfStderr)
-    self_vm_set_io_fds(stdinFD, stdoutFD, stderrFD)
 
     Thread.detachNewThread { [weak self] in
       Thread.current.name = "Self VM"
-      var argv0 = strdup("Self")!
-      defer { free(argv0) }
-      withUnsafeMutablePointer(to: &snort/*argv0*/) { p in
-        let argv = UnsafeMutablePointer<UnsafeMutablePointer<CChar>?>(OpaquePointer(p))
-        _ = self_vm_main(1, argv)
+
+      self_vm_set_io_fds(stdinFD, stdoutFD, stderrFD)
+
+      let args = ["Self",
+               "-t" // needed for now because of alarm signals, in future need kqueue-based solution
+      ]
+      var argv: [UnsafeMutablePointer<CChar>?] = args.map { $0.withCString { strdup($0) } } + [nil]
+      let toFree = argv
+      defer { for p in toFree { if let p { free(p) } } }
+      let argc = Int32(args.count)
+      argv.withUnsafeMutableBufferPointer { buf in
+        _ = self_vm_main(argc, buf.baseAddress)
       }
       _ = self
     }
-#else
-    m.writeLine("[A/B TEST: Self VM not linked]")
-#endif
   }
 }
-
-var snort = "Self VM snort"

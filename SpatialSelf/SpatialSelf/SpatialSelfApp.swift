@@ -12,17 +12,15 @@ import Views      // ReusableViews — TerminalView, TerminalModel
 
 @main
 struct SpatialSelfApp: App {
+  init() {
+    // Start the VM as early as possible to test whether the .task deferral
+    // is still load-bearing now that heap@24GB and -t are in place.
+    SelfVMLauncher.shared.start()
+  }
+
   var body: some Scene {
     WindowGroup {
       SelfShellView()
-      
-        .task {
-          // Defer VM launch until after SwiftUI presents the window.
-          // The Self VM installs handlers for SIGSEGV/SIGBUS/SIGILL/SIGTRAP
-          // which UIKit + RealityKit use during init; starting earlier
-          // hangs the main thread in fatal_menu.
-          SelfVMLauncher.shared.start()
-        }
     }
     .defaultSize(width: 900, height: 1050)
   }
