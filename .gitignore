@@ -1,0 +1,22 @@
+# macOS Finder cruft
+.DS_Store
+
+# Xcode per-user UI state
+xcuserdata/
+*.xcuserstate
+
+# Build artifacts
+build/
+DerivedData/
+*.o
+*.dia
+
+# Swift Package Manager (workspace resolves packages on its own)
+.swiftpm/
+Package.resolved
+
+# Self.framework / SelfVM.xcframework — produced by OurSelf64's
+# vm64/cmake-xcframework.sh and symlinked in.  Not committed; see
+# README.md for how to populate.
+Frameworks/SelfVM.xcframework
+Frameworks/Self.xcframework
