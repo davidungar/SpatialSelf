@@ -46,9 +46,10 @@ final class SelfVMLauncher {
 
       self_vm_set_io_fds(stdinFD, stdoutFD, stderrFD)
 
-      let args = ["Self",
-               "-t" // needed for now because of alarm signals, in future need kqueue-based solution
-      ]
+      // No "-t": the VM now redirects timer signals to its own thread
+      // (IntervalTimerTick / self_vm_timer_thread in itimer_unix.cpp), so
+      // setitimer no longer jams the SwiftUI host and preemption stays on.
+      let args = ["Self"]
       + (snapshotPath.map { ["-s", $0] } ?? []) // read initial world from the chosen snapshot
       + CommandLine.arguments.dropFirst() // pass any extra argv down to the VM
       var argv: [UnsafeMutablePointer<CChar>?] = args.map { $0.withCString { strdup($0) } } + [nil]
