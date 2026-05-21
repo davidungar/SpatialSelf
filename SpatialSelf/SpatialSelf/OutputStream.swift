@@ -5,8 +5,13 @@
 //
 
 import SwiftUI
+import Views
 
-enum OutputStream: CaseIterable {
+enum OutputStream: TerminalOutputStreamProtocol {
+  static let realStdout = stdout
+  static let redirectedStdout = selfStdout
+  static let redirectedStderr = selfStderr
+  
   case
   selfStdout,
   selfStderr,

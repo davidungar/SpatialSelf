@@ -14,6 +14,7 @@
 
 /* Begin PBXFileReference section */
 		AABB001000000000000000C3 /* SelfVM.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SelfVM.xcframework; path = ../Frameworks/SelfVM.xcframework; sourceTree = "<group>"; };
+		BC1A1F442FBD408B002C1CA9 /* SpatialSelf.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SpatialSelf.xcodeproj; sourceTree = "<group>"; };
 		BCD26E3E2FBC04AA002B5A13 /* SpatialSelf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpatialSelf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCD2724F2FBC0E32002B5A13 /* SpatialSelf.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SpatialSelf.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -53,6 +54,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC1A1F452FBD408B002C1CA9 /* Products */ = {
+			isa = PBXGroup;
+			name = Products;
+			sourceTree = "<group>";
+		};
 		BCD26E352FBC04AA002B5A13 = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +148,10 @@
 				{
 					ProductGroup = BCD272502FBC0E32002B5A13 /* Products */;
 					ProjectRef = BCD2724F2FBC0E32002B5A13 /* SpatialSelf.xcodeproj */;
+				},
+				{
+					ProductGroup = BC1A1F452FBD408B002C1CA9 /* Products */;
+					ProjectRef = BC1A1F442FBD408B002C1CA9 /* SpatialSelf.xcodeproj */;
 				},
 			);
 			projectRoot = "";

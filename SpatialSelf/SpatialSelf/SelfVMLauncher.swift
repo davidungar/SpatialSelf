@@ -21,7 +21,7 @@ import Darwin
 final class SelfVMLauncher {
   static let shared = SelfVMLauncher()
 
-  let io = Terminal_IO_Redirector()
+  let io = Terminal_IO_Redirector<OutputStream> {TerminalModel.shared.write($0, color: $1)}
   private var started = false
 
   func start() {
@@ -32,13 +32,12 @@ final class SelfVMLauncher {
     m.writeLine("Welcome to the terminal.")
     m.writeLine("Type something and press Return.")
 
-    io.start()
     TerminalModel.shared.onSubmit = { [io] line in
       io.writeToStdin(line)
     }
-    let stdinFD  = io.stdinReadFD ?? -1
-    let stdoutFD = io.outputFD(for: .selfStdout)
-    let stderrFD = io.outputFD(for: .selfStderr)
+    let stdinFD  = io.stdinReadFD
+    let stdoutFD = io.outputFD(for: OutputStream.selfStdout)
+    let stderrFD = io.outputFD(for: OutputStream.selfStderr)
 
     Thread.detachNewThread { [weak self] in
       Thread.current.name = "Self VM"
