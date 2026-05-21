@@ -24,7 +24,9 @@ final class SelfVMLauncher {
   let io = Terminal_IO_Redirector<OutputStream> {TerminalModel.shared.write($0, color: $1)}
   private var started = false
 
-  func start() {
+  /// Launch the VM. If `snapshotPath` is non-nil, the VM reads its initial
+  /// world from that file (passed as `-s <path>`); otherwise it boots fresh.
+  func start(snapshotPath: String? = nil) {
     guard !started else { return }
     started = true
 
@@ -46,7 +48,9 @@ final class SelfVMLauncher {
 
       let args = ["Self",
                "-t" // needed for now because of alarm signals, in future need kqueue-based solution
-      ] + CommandLine.arguments.dropFirst() // pass any extra argv down to the VM after -t
+      ]
+      + (snapshotPath.map { ["-s", $0] } ?? []) // read initial world from the chosen snapshot
+      + CommandLine.arguments.dropFirst() // pass any extra argv down to the VM
       var argv: [UnsafeMutablePointer<CChar>?] = args.map { $0.withCString { strdup($0) } } + [nil]
       let toFree = argv
       defer { for p in toFree { if let p { free(p) } } }

@@ -12,12 +12,9 @@ import Views      // ReusableViews — TerminalView, TerminalModel
 
 @main
 struct SpatialSelfApp: App {
-  init() {
-    // Start the VM as early as possible to test whether the .task deferral
-    // is still load-bearing now that heap@24GB and -t are in place.
-    SelfVMLauncher.shared.start()
-  }
-
+  // The VM is no longer started here: SelfShellView shows a start screen so the
+  // user can choose a snapshot (or start fresh) before the VM boots, since the
+  // VM reads its snapshot only once, during initialization.
   var body: some Scene {
     WindowGroup {
       SelfShellView()
