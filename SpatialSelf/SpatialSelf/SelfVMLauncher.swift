@@ -46,7 +46,7 @@ final class SelfVMLauncher {
 
       let args = ["Self",
                "-t" // needed for now because of alarm signals, in future need kqueue-based solution
-      ]
+      ] + CommandLine.arguments.dropFirst() // pass any extra argv down to the VM after -t
       var argv: [UnsafeMutablePointer<CChar>?] = args.map { $0.withCString { strdup($0) } } + [nil]
       let toFree = argv
       defer { for p in toFree { if let p { free(p) } } }
