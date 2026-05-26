@@ -50,6 +50,7 @@ final class SelfVMLauncher {
       // (IntervalTimerTick / self_vm_timer_thread in itimer_unix.cpp), so
       // setitimer no longer jams the SwiftUI host and preemption stays on.
       let args = ["Self"]
+//       + ["-t"]
       + (snapshotPath.map { ["-s", $0] } ?? []) // read initial world from the chosen snapshot
       + CommandLine.arguments.dropFirst() // pass any extra argv down to the VM
       var argv: [UnsafeMutablePointer<CChar>?] = args.map { $0.withCString { strdup($0) } } + [nil]
