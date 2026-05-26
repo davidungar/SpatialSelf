@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		AABB001000000000000000B1 /* Views in Frameworks */ = {isa = PBXBuildFile; productRef = AABB001000000000000000A1 /* Views */; };
 		AABB001000000000000000B2 /* DavesUtilities in Frameworks */ = {isa = PBXBuildFile; productRef = AABB001000000000000000A2 /* DavesUtilities */; };
-		AABB001000000000000000B3 /* SelfVM.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = AABB001000000000000000C3 /* SelfVM.xcframework */; };
+		AABB001000000000000000E5 /* libSelfVM.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AABB001000000000000000E4 /* libSelfVM.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AABB001000000000000000C3 /* SelfVM.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SelfVM.xcframework; path = ../Frameworks/SelfVM.xcframework; sourceTree = "<group>"; };
+		AABB001000000000000000E1 /* Self.xcodeproj (VM) */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Self.xcodeproj (VM)"; path = "/Users/ungar/self/vms/OurSelf/self64/cmake-build-AVP-compilation-check/Self.xcodeproj"; sourceTree = "<absolute>"; };
 		BC1A1F442FBD408B002C1CA9 /* SpatialSelf.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SpatialSelf.xcodeproj; sourceTree = "<group>"; };
 		BCD26E3E2FBC04AA002B5A13 /* SpatialSelf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpatialSelf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCD2724F2FBC0E32002B5A13 /* SpatialSelf.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SpatialSelf.xcodeproj; sourceTree = "<group>"; };
@@ -47,7 +47,7 @@
 			files = (
 				AABB001000000000000000B1 /* Views in Frameworks */,
 				AABB001000000000000000B2 /* DavesUtilities in Frameworks */,
-				AABB001000000000000000B3 /* SelfVM.xcframework in Frameworks */,
+				AABB001000000000000000E5 /* libSelfVM.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,7 +64,7 @@
 			children = (
 				BCD26E402FBC04AA002B5A13 /* SpatialSelf */,
 				BCD26E412FBC04AA002B5A13 /* Packages */,
-				AABB001000000000000000C3 /* SelfVM.xcframework */,
+				AABB001000000000000000E1 /* Self.xcodeproj (VM) */,
 				BCD26E3F2FBC04AA002B5A13 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -89,6 +89,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		AABB001000000000000000E2 /* Products (VM) */ = {
+			isa = PBXGroup;
+			children = (
+				AABB001000000000000000E4 /* libSelfVM.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -96,7 +104,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BCD26E4F2FBC04AB002B5A13 /* Build configuration list for PBXNativeTarget "SpatialSelf" */;
 			buildPhases = (
-				AABB001000000000000000D1 /* Run Script: build SelfVM.xcframework */,
 				BCD26E3A2FBC04AA002B5A13 /* Sources */,
 				BCD26E3B2FBC04AA002B5A13 /* Frameworks */,
 				BCD26E3C2FBC04AA002B5A13 /* Resources */,
@@ -104,6 +111,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				AABB001000000000000000E7 /* Self (VM) */,
 			);
 			fileSystemSynchronizedGroups = (
 				BCD26E402FBC04AA002B5A13 /* SpatialSelf */,
@@ -146,6 +154,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = AABB001000000000000000E2 /* Products (VM) */;
+					ProjectRef = AABB001000000000000000E1 /* Self.xcodeproj (VM) */;
+				},
+				{
 					ProductGroup = BCD272502FBC0E32002B5A13 /* Products */;
 					ProjectRef = BCD2724F2FBC0E32002B5A13 /* SpatialSelf.xcodeproj */;
 				},
@@ -170,29 +182,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		AABB001000000000000000D1 /* Run Script: build SelfVM.xcframework */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/../scripts/build-self-vm.sh",
-			);
-			name = "Run Script: build SelfVM.xcframework";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "exec \"${SRCROOT}/../scripts/build-self-vm.sh\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BCD26E3A2FBC04AA002B5A13 /* Sources */ = {
@@ -437,6 +426,41 @@
 			productName = DavesUtilities;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin PBXContainerItemProxy section */
+		AABB001000000000000000E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AABB001000000000000000E1 /* Self.xcodeproj (VM) */;
+			proxyType = 2;
+			remoteGlobalIDString = B654A663E9F646AEA1E562B6;
+			remoteInfo = Self;
+		};
+		AABB001000000000000000E6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AABB001000000000000000E1 /* Self.xcodeproj (VM) */;
+			proxyType = 1;
+			remoteGlobalIDString = E03BE56BBF55A78FEA25ED60;
+			remoteInfo = Self;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXReferenceProxy section */
+		AABB001000000000000000E4 /* libSelfVM.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSelfVM.a;
+			remoteRef = AABB001000000000000000E3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXTargetDependency section */
+		AABB001000000000000000E7 /* Self (VM) */ = {
+			isa = PBXTargetDependency;
+			name = Self;
+			targetProxy = AABB001000000000000000E6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 	};
 	rootObject = BCD26E362FBC04AA002B5A13 /* Project object */;
 }

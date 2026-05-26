@@ -1,75 +1,78 @@
 # SpatialSelf
 
-SwiftUI host for the Self VM on visionOS. Owns a `TerminalView` window and
-links `Self.xcframework` produced from `~/self/vms/OurSelf/self64`.
+SwiftUI host for the Self VM on visionOS. Owns a `TerminalView` window and links
+the Self VM, which is **built from source** as a cross-project dependency on the
+CMake-generated `Self.xcodeproj` in `~/self/vms/OurSelf/self64`.
 
-## One-time project setup
+## The Self VM dependency (read this first)
 
-The Swift sources are already laid out under `SpatialSelf/`; you just need to
-create the Xcode project shell around them (`pbxproj` is too fragile to write
-by hand).
+SpatialSelf's Xcode project has a cross-project reference to
 
-1. **Build the xcframework** in OurSelf64:
-   ```
-   ~/self/vms/OurSelf/self64/vm64/configure.sh xcframework
-   ```
-   Drops `SelfVM.xcframework` in `cmake-build-AVP-framework/`. Copy or symlink it
-   into `SpatialSelf/Frameworks/`.
+```
+~/self/vms/OurSelf/self64/cmake-build-AVP-compilation-check/Self.xcodeproj
+```
 
-2. **Create the Xcode project** at `SpatialSelf/SpatialSelf.xcodeproj`:
-   - File → New → Project → **visionOS → App**
-   - Product Name: `SpatialSelf`
-   - Interface: SwiftUI, Language: Swift
-   - Save into `~/code/separatingForInlining/SpatialSelf/` (uncheck
-     "Create Git repository").
-   - Xcode will create stub `ContentView.swift` and `SpatialSelfApp.swift`
-     — **delete those stubs** and add the existing files in this directory
-     to the target:
-     - `SpatialSelfApp.swift`
-     - `SelfShellView.swift`
-     - `SelfVMLauncher.swift`
-     - `Terminal_IO_Redirector.swift`
-     - `OutputStream.swift`
+links its `libSelfVM.a` product, and depends on its `Self` target — so Xcode builds
+the VM (for whichever destination you pick, device or simulator) before the app.
 
-3. **Bridging header**: in Build Settings, set *Objective-C Bridging Header*
-   to `SpatialSelf/SpatialSelf-Bridging-Header.h`.
+**That VM project is GENERATED, not checked in.** On a fresh checkout, or after
+deleting/cleaning build dirs, regenerate it *before* building SpatialSelf:
 
-4. **Link the xcframework**: drag `Frameworks/Self.xcframework` into the
-   project navigator; in target's *Frameworks, Libraries, and Embedded
-   Content*, set it to "Do Not Embed" (it's a static lib inside the
-   xcframework).
+```sh
+cd ~/self/vms/OurSelf/self64 && vm64/configure.sh visionos
+```
 
-5. **Package dependencies** (target → General → Frameworks, Libraries):
-   - `Views` (from ReusableViews)
-   - `DavesUtilities`
-   - `VisionUtilities` (optional now; needed for future RealityKit work)
+That (re)creates `cmake-build-AVP-compilation-check/Self.xcodeproj`. The one
+generated project builds both the `xros` (device) and `xrsimulator` slices on
+demand — Xcode picks the SDK from the active destination; CMake does not bake the
+sysroot into the compile flags, so no separate per-slice configure is needed.
 
-   These packages are already in `Enchilada.xcworkspace` as `FileRef`s, so
-   they resolve as workspace packages.
+**arm64 only.** `libSelfVM.a` is arm64-only, so build for an **arm64** simulator or
+device (the default on Apple Silicon). A *generic* simulator build that pulls in
+x86_64 will fail to link (`found architecture 'arm64', required architecture
+'x86_64'`); pick a concrete arm64 destination or pass `ARCHS=arm64`.
 
-6. **Workspace** already references `SpatialSelf/SpatialSelf.xcodeproj` —
-   no manual add needed.
+There is **no `Self.xcframework` and no "build the VM" Run Script anymore** — the VM
+is an ordinary build dependency. A bonus of building from source: you can step from
+Swift straight into the VM's C++ in the debugger.
 
-7. **Auto-rebuild xcframework on each build.** SpatialSelf has a
-   `Run Script: build Self.xcframework` build phase that runs before the
-   sources phase and invokes `scripts/build-self-vm.sh`. That script:
-   - clears Xcode's build env (so cmake's nested xcodebuild doesn't crash),
-   - augments PATH so Homebrew cmake/ninja are reachable,
-   - runs `vm64/configure.sh xcframework`,
-   - tees the full output to `/tmp/self-vm-build.log`, and
-   - forwards only diagnostic lines (clang `file:line:col: error:`, ld
-     errors, etc.) to Xcode so the issue navigator catches them.
+> History: SpatialSelf used to link a prebuilt `SelfVM.xcframework` that a
+> `scripts/build-self-vm.sh` Run Script phase rebuilt on every app build. That
+> coupling was replaced by the cross-project dependency (May 2026). The leftover
+> `Frameworks/SelfVM.xcframework` symlink and `scripts/build-self-vm.sh` are now
+> unused. The `vm64/configure.sh xcframework` flow still exists if you ever need a
+> standalone prebuilt framework.
 
-   Run it standalone from a terminal whenever you want a manual VM
-   rebuild without going through Xcode:
-   ```sh
-   ~/code/separatingForInlining/SpatialSelf/scripts/build-self-vm.sh
-   ```
-   Env overrides: `OURSELF64_PATH`, `CONFIG` (Debug/Release/RelWithDebInfo),
-   `SELF_VM_LOG`.
+## Recreating the Xcode project from scratch
+
+The Swift sources live under `SpatialSelf/`; the `.xcodeproj` shell is too fragile
+to write by hand, so rebuild it in the IDE:
+
+1. Generate the VM project once:
+   `~/self/vms/OurSelf/self64/vm64/configure.sh visionos`.
+2. File → New → Project → **visionOS → App**; Product Name `SpatialSelf`;
+   SwiftUI / Swift; save into `~/code/separatingForInlining/SpatialSelf/` (uncheck
+   "Create Git repository"). Delete the stub `ContentView.swift` /
+   `SpatialSelfApp.swift` and add the existing files to the target:
+   `SpatialSelfApp.swift`, `SelfShellView.swift`, `SelfVMLauncher.swift`,
+   `Terminal_IO_Redirector.swift`, `OutputStream.swift`.
+3. Build Settings:
+   - *Objective-C Bridging Header* = `SpatialSelf/SpatialSelf-Bridging-Header.h`
+   - add `$(HOME)/self/vms/OurSelf/self64/vm64/build_support/embed` to
+     *Header Search Paths* (for `self_vm.h`)
+   - add `-lc++` and `-lncurses` to *Other Linker Flags*.
+4. Drag `cmake-build-AVP-compilation-check/Self.xcodeproj` into the project
+   navigator; in the target's *Frameworks, Libraries, and Embedded Content* add
+   `libSelfVM.a` from its products ("Do Not Embed" — it's a static lib). Xcode
+   wires the cross-project file reference, product proxy, and build dependency.
+5. Package dependencies (target → General → Frameworks, Libraries):
+   `Views` (from ReusableViews), `DavesUtilities`, and `VisionUtilities`
+   (optional now; needed for future RealityKit work). These resolve as workspace
+   packages from `Enchilada.xcworkspace`.
+6. The workspace already references `SpatialSelf/SpatialSelf.xcodeproj`.
 
 ## Running
 
-Open `Enchilada.xcworkspace`, select the **SpatialSelf** scheme + an Apple
-Vision Pro simulator (or device), ⌘R. The terminal window appears with the
+Open `Enchilada.xcworkspace`, select the **SpatialSelf** scheme + an **arm64**
+Apple Vision Pro simulator (or device), ⌘R. The terminal window appears with the
 Self VM's `#` prompt; type expressions, see output.
