@@ -18,7 +18,7 @@ OURSELF64_PATH="${OURSELF64_PATH:-$HOME/self/vms/OurSelf/self64}"
 SELF_VM_LOG="${SELF_VM_LOG:-/tmp/self-vm-build.log}"
 
 # Strip outer xcodebuild env so the nested xcodebuild inside
-# cmake-xcframework.sh does not inherit CONFIGURATION / BUILD_DIR / etc.
+# configure.sh xcframework does not inherit CONFIGURATION / BUILD_DIR / etc.
 # and crash the build system. Augment PATH so cmake/ninja from Homebrew
 # are reachable (Xcode's default PATH omits /opt/homebrew/bin).
 CLEAN_PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
@@ -28,7 +28,7 @@ env -i \
     USER="$USER" \
     PATH="$CLEAN_PATH" \
     ${CONFIG:+CONFIG="$CONFIG"} \
-  "$OURSELF64_PATH/vm64/cmake-xcframework.sh" 2>&1 \
+  "$OURSELF64_PATH/vm64/configure.sh" xcframework 2>&1 \
   | tee "$SELF_VM_LOG" \
   | awk '
       # clang/gcc native diagnostics (Xcode parses these verbatim)

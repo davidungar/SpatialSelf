@@ -11,9 +11,9 @@ by hand).
 
 1. **Build the xcframework** in OurSelf64:
    ```
-   ~/self/vms/OurSelf/self64/vm64/cmake-xcframework.sh
+   ~/self/vms/OurSelf/self64/vm64/configure.sh xcframework
    ```
-   Drops `Self.xcframework` in `cmake-build-xcframework/`. Copy or symlink it
+   Drops `SelfVM.xcframework` in `cmake-build-AVP-framework/`. Copy or symlink it
    into `SpatialSelf/Frameworks/`.
 
 2. **Create the Xcode project** at `SpatialSelf/SpatialSelf.xcodeproj`:
@@ -55,7 +55,7 @@ by hand).
    sources phase and invokes `scripts/build-self-vm.sh`. That script:
    - clears Xcode's build env (so cmake's nested xcodebuild doesn't crash),
    - augments PATH so Homebrew cmake/ninja are reachable,
-   - runs `vm64/cmake-xcframework.sh`,
+   - runs `vm64/configure.sh xcframework`,
    - tees the full output to `/tmp/self-vm-build.log`, and
    - forwards only diagnostic lines (clang `file:line:col: error:`, ld
      errors, etc.) to Xcode so the issue navigator catches them.
