@@ -65,3 +65,23 @@ if [ "$status" -ne 0 ]; then
     echo "error: Self VM build failed — full log: $SELF_VM_LOG"
     exit "$status"
 fi
+
+# --- force SpatialSelf to relink against the just-rebuilt VM -----------------
+# configure.sh recreates SelfVM.xcframework every run (fresh mtime), but Xcode
+# caches its *extracted* copy of the xcframework (the "ProcessXCFramework" step)
+# and will NOT re-extract just because the inner libSelfVM.a changed -- so the
+# app silently keeps linking a STALE VM. This bit us on the
+# use_real_instead_of_cpu_timer A/B (flag flipped in the lib, but the running
+# app still showed the old behavior). Bump the inner libs' mtime AND drop
+# Xcode's cached extraction so the link step is forced to pick up the new lib.
+# Best-effort; never fails the build. Xcode exports OBJROOT/SYMROOT/BUILD_ROOT
+# to Run Script phases (terminal runs leave them unset -> skipped harmlessly).
+# -- claude & dmu 5/2026
+XCF="$OURSELF64_PATH/cmake-build-AVP-framework/SelfVM.xcframework"
+find "$XCF" -name 'libSelfVM.a' -exec touch {} + 2>/dev/null || true
+for _root in "$OBJROOT" "$SYMROOT" "$BUILD_ROOT"; do
+    { [ -n "$_root" ] && [ -d "$_root" ]; } || continue
+    find "$_root" -maxdepth 5 -type d -path '*XCFrameworkIntermediates*' \
+        -name 'SelfVM*' -prune -exec rm -rf {} + 2>/dev/null || true
+done
+echo "build-self-vm.sh: bumped SelfVM.xcframework and cleared its XCFramework extraction cache to force a relink"
