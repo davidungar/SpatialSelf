@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>58</integer>
 		</dict>
+		<key>MacSpatialSelf.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>62</integer>
+		</dict>
 		<key>SpatialSelf.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -17,6 +22,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>BC8FD32B2FC68EA7007157C8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>BCD26E3D2FBC04AA002B5A13</key>
 		<dict>
 			<key>primary</key>

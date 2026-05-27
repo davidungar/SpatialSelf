@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BCD26E3D2FBC04AA002B5A13"
-               BuildableName = "SpatialSelf.app"
-               BlueprintName = "SpatialSelf"
+               BuildableName = "VisionSpatialSelf.app"
+               BlueprintName = "VisionSpatialSelf"
                ReferencedContainer = "container:SpatialSelf.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,8 +46,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BCD26E3D2FBC04AA002B5A13"
-            BuildableName = "SpatialSelf.app"
-            BlueprintName = "SpatialSelf"
+            BuildableName = "VisionSpatialSelf.app"
+            BlueprintName = "VisionSpatialSelf"
             ReferencedContainer = "container:SpatialSelf.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -70,8 +70,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BCD26E3D2FBC04AA002B5A13"
-            BuildableName = "SpatialSelf.app"
-            BlueprintName = "SpatialSelf"
+            BuildableName = "VisionSpatialSelf.app"
+            BlueprintName = "VisionSpatialSelf"
             ReferencedContainer = "container:SpatialSelf.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
