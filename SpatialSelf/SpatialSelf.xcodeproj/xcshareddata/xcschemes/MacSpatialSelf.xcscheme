@@ -15,9 +15,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BCD26E3D2FBC04AA002B5A13"
-               BuildableName = "VisionSpatialSelf.app"
-               BlueprintName = "VisionSpatialSelf"
+               BlueprintIdentifier = "BC8FD32B2FC68EA7007157C8"
+               BuildableName = "MacSpatialSelf.app"
+               BlueprintName = "MacSpatialSelf"
                ReferencedContainer = "container:SpatialSelf.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,45 +45,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BCD26E3D2FBC04AA002B5A13"
-            BuildableName = "VisionSpatialSelf.app"
-            BlueprintName = "VisionSpatialSelf"
+            BlueprintIdentifier = "BC8FD32B2FC68EA7007157C8"
+            BuildableName = "MacSpatialSelf.app"
+            BlueprintName = "MacSpatialSelf"
             ReferencedContainer = "container:SpatialSelf.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "-s /Users/ungar/snapshot/T.snap"
-            isEnabled = "NO">
-         </CommandLineArgument>
-      </CommandLineArguments>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "OS_ACTIVITY_MODE"
-            value = "disable"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "OS_ACTIVITY_DT_MODE"
-            value = "disable"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "MTL_HUD_ENABLED"
-            value = "disable"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "HANG_TRACER_DISABLED"
-            value = "1"
-            isEnabled = "NO">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "OS_HANG_TRACER_DISABLED"
-            value = "1"
-            isEnabled = "NO">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -95,9 +62,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BCD26E3D2FBC04AA002B5A13"
-            BuildableName = "VisionSpatialSelf.app"
-            BlueprintName = "VisionSpatialSelf"
+            BlueprintIdentifier = "BC8FD32B2FC68EA7007157C8"
+            BuildableName = "MacSpatialSelf.app"
+            BlueprintName = "MacSpatialSelf"
             ReferencedContainer = "container:SpatialSelf.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
