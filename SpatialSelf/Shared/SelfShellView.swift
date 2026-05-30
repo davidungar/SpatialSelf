@@ -25,8 +25,10 @@ struct SelfShellView<Accessory: View>: View {
     VStack(spacing: 0) {
       if vmStarted {
         TerminalView()
+        Divider()
+        SelfRunningControls()
       } else {
-        SnapshotStartView { snapshotPath in
+        SnapshotLaunchView { snapshotPath in
           SelfTerminalLauncher.shared.start(snapshotPath: snapshotPath)
           vmStarted = true
         }

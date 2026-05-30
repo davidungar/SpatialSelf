@@ -51,4 +51,12 @@ final class SelfTerminalLauncher {
                   stderr: io.outputFD(for: OutputStream.selfStderr),
                   args:   args)
   }
+
+  /// Send a Self expression to the running VM, echoing it into the transcript so the
+  /// user sees what the affordance ran (used by the Save snapshot / File out controls).
+  func send(_ command: String) {
+    guard started else { return }
+    TerminalModel.shared.write(TerminalModel.shared.prompt + command + "\n", color: .secondary)
+    io.writeToStdin(command)
+  }
 }
