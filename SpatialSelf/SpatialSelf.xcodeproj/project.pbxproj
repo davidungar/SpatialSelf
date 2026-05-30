@@ -142,7 +142,6 @@
 			children = (
 				BC8FD3422FC68F8B007157C8 /* Self (macOS VM) */,
 				BCD26E402FBC04AA002B5A13 /* SpatialSelf */,
-				BCD26E412FBC04AA002B5A13 /* Packages */,
 				AABB001000000000000000E1 /* Self (visionOS VM) */,
 				BC8FD32D2FC68EA7007157C8 /* MacSpatialSelf */,
 				BC275C4F2FC69B4900A1ABB3 /* Frameworks */,
@@ -157,13 +156,6 @@
 				BC8FD32C2FC68EA7007157C8 /* MacSpatialSelf.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		BCD26E412FBC04AA002B5A13 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Packages;
 			sourceTree = "<group>";
 		};
 		BCD272502FBC0E32002B5A13 /* Products */ = {
