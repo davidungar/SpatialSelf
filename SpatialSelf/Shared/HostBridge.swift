@@ -1,8 +1,8 @@
 //
 //  HostBridge.swift
-//  MacSpatialSelf — macOS host for the Self VM (host-bridge E.2).
+//  SpatialSelf (Shared) — host-bridge (E.2). macOS-only.
 //
-//  The macOS end of the Swift<->VM host bridge. Owns two pipes:
+//  The app end of the Swift<->VM host bridge. Owns two pipes:
 //    • event pipe   (app -> VM):  app writes length-prefixed event frames
 //    • present pipe (VM -> app):  VM writes length-prefixed present frames
 //  Frame = 4-byte little-endian length + payload — symmetric with the Self side
@@ -10,6 +10,8 @@
 //
 //  -- claude & dmu 5/26
 //
+
+#if os(macOS)
 
 import Foundation
 import Observation
@@ -111,3 +113,5 @@ final class HostBridge {
         }
     }
 }
+
+#endif

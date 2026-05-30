@@ -1,26 +1,28 @@
 //
-//  MacSelfLauncher.swift
-//  MacSpatialSelf
+//  BridgeLauncher.swift
+//  SpatialSelf (Shared) — host-bridge (E.2) launcher. macOS-only.
 //
-//  Launches the headless macOS Self VM (linked statically from
-//  cmake-build-macos-lib/libSelfVM.a) on a background thread, and stands up the
-//  host bridge: the VM reads a snapshot (-s), files in objects/hostBridge.self (-f),
-//  and is told its two bridge fds via --bridge-event-fd / --bridge-present-fd. We
-//  then feed a short boot script over the VM's stdin to install the real selectInto:,
+//  Launches the headless Self VM (linked statically from libSelfVM) on a
+//  background thread, and stands up the host bridge: the VM reads a snapshot (-s),
+//  files in objects/hostBridge.self (-f), and is told its two bridge fds. We then
+//  feed a short boot script over the VM's stdin to install the real selectInto:,
 //  bind hostBridge to those fds, and fork its watch pump.
 //
-//  Dev note: the snapshot / source paths below are hard-coded to this machine's
-//  self64 checkout. (A snapshot boots the scheduler with no windows by default, so
-//  the headless VM is happy.)
+//  macOS-only: the snapshot / source paths below are hard-coded to this machine's
+//  self64 checkout, which only exists on the dev Mac (not in a visionOS sandbox).
+//  (A snapshot boots the scheduler with no windows by default, so the headless VM
+//  is happy.)
 //
 //  -- claude & dmu 5/26
 //
 
+#if os(macOS)
+
 import Foundation
 
 @MainActor
-final class MacSelfLauncher {
-    static let shared = MacSelfLauncher()
+final class BridgeLauncher {
+    static let shared = BridgeLauncher()
     let bridge = HostBridge()
     private var started = false
 
@@ -52,3 +54,5 @@ final class MacSelfLauncher {
         boot.withCString { _ = write(appStdinWrite, $0, strlen($0)) }
     }
 }
+
+#endif

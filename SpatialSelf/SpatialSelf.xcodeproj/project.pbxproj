@@ -45,16 +45,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		BCCB06722FCAA9E100D50450 /* Exceptions for "MacSpatialSelf" folder in "VisionSpatialSelf" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				ContentView.swift,
-				HostBridge.swift,
-				MacRootView.swift,
-				MacSelfLauncher.swift,
-			);
-			target = BCD26E3D2FBC04AA002B5A13 /* VisionSpatialSelf */;
-		};
 		BCD26E4E2FBC04AB002B5A13 /* Exceptions for "SpatialSelf" folder in "VisionSpatialSelf" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -72,9 +62,6 @@
 		};
 		BC8FD32D2FC68EA7007157C8 /* MacSpatialSelf */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				BCCB06722FCAA9E100D50450 /* Exceptions for "MacSpatialSelf" folder in "VisionSpatialSelf" target */,
-			);
 			path = MacSpatialSelf;
 			sourceTree = "<group>";
 		};
