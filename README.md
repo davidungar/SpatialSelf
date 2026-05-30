@@ -73,6 +73,7 @@ to write by hand, so rebuild it in the IDE:
 
 ## Running
 
-Open `Enchilada.xcworkspace`, select the **SpatialSelf** scheme + an **arm64**
-Apple Vision Pro simulator (or device), ⌘R. The terminal window appears with the
-Self VM's `#` prompt; type expressions, see output.
+Open `Enchilada.xcworkspace`, select the **VisionSpatialSelf** scheme (or
+**MacSpatialSelf** for the macOS host) + an **arm64** Apple Vision Pro simulator
+(or device), ⌘R. The terminal window appears with the Self VM's `#` prompt; type
+expressions, see output.
