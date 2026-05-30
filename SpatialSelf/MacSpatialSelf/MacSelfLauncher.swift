@@ -38,22 +38,13 @@ final class MacSelfLauncher {
         precondition(pipe(&sin) == 0, "stdin pipe() failed")
         let vmStdinRead = sin[0], appStdinWrite = sin[1]
 
-        self_vm_set_io_fds(vmStdinRead, -1, -1)   // VM reads our stdin; stdout/stderr -> console
-
-        Thread.detachNewThread {
-            Thread.current.name = "Self VM (mac)"
-            // The fd numbers are conveyed to the VM by the boot script (literal
-            // `hostBridge bindEventFd:PresentFd:` binds fed over stdin), so no
-            // --bridge-* argv flags are needed here.
-            let args = ["Self",
-                        "-s", snapshot,
-                        "-f", hostBridgeSelf]
-            var argv: [UnsafeMutablePointer<CChar>?] = args.map { strdup($0) } + [nil]
-            defer { for case let p? in argv { free(p) } }
-            argv.withUnsafeMutableBufferPointer { buf in
-                _ = self_vm_main(Int32(args.count), buf.baseAddress)
-            }
-        }
+        // VM reads our stdin; stdout/stderr -> console (-1 leaves them on the tty).
+        // The fd numbers are conveyed to the VM by the boot script (literal
+        // `hostBridge bindEventFd:PresentFd:` fed over stdin), so no --bridge-* argv
+        // flags are needed here.
+        SelfVM.launch(threadName: "Self VM (mac)",
+                      stdin: vmStdinRead, stdout: -1, stderr: -1,
+                      args: ["Self", "-s", snapshot, "-f", hostBridgeSelf])
 
         // Feed the boot script. It's buffered in the pipe; the VM's REPL consumes it
         // after the snapshot loads and postRead runs (boot is sequential).

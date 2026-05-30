@@ -1,9 +1,9 @@
 //
 //  MacSpatialSelfApp.swift
-//  MacSpatialSelf — macOS host for the Self VM (host-bridge E.2).
+//  MacSpatialSelf — macOS host for the Self VM.
 //
-//  Shows the bridge test window; the VM + bridge are started from
-//  BridgeTestView.onAppear (so the launch runs on the main actor).
+//  Shows the terminal shell by default (the same SelfShellView the visionOS app
+//  uses), with the E.2 host-bridge test reachable from MacRootView.
 //
 
 import SwiftUI
@@ -12,8 +12,8 @@ import SwiftUI
 struct MacSpatialSelfApp: App {
     var body: some Scene {
         WindowGroup {
-            BridgeTestView()
+            MacRootView()
         }
-        .defaultSize(width: 380, height: 240)
+        .defaultSize(width: 900, height: 1050)
     }
 }

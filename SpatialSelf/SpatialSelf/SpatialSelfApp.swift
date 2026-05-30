@@ -17,8 +17,9 @@ struct SpatialSelfApp: App {
   // VM reads its snapshot only once, during initialization.
   var body: some Scene {
     WindowGroup {
-      SelfShellView()
+      MacRootView()
     }
     .defaultSize(width: 900, height: 1050)
   }
 }
+
