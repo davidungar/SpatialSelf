@@ -15,6 +15,7 @@
 		BC655B7D2FC69E9C00336045 /* Views in Frameworks */ = {isa = PBXBuildFile; productRef = BC655B7C2FC69E9C00336045 /* Views */; };
 		F1D05A1A000000000000000C /* Views in Frameworks */ = {isa = PBXBuildFile; productRef = F1D05A1A000000000000000A /* Views */; };
 		F1D05A1A000000000000000D /* DavesUtilities in Frameworks */ = {isa = PBXBuildFile; productRef = F1D05A1A000000000000000B /* DavesUtilities */; };
+		F1D05A1A0000000000000023 /* libSelfVM-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D05A1A0000000000000022 /* libSelfVM-ios.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +33,13 @@
 			remoteGlobalIDString = 16DF44C10F1D47248E654244;
 			remoteInfo = Self;
 		};
+		F1D05A1A0000000000000021 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F1D05A1A0000000000000020 /* Self (iOS VM) */;
+			proxyType = 2;
+			remoteGlobalIDString = B1DC2316DE5545A8BDD59CBE;
+			remoteInfo = Self;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +53,7 @@
 		BCD26E3E2FBC04AA002B5A13 /* VisionSpatialSelf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VisionSpatialSelf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCD2724F2FBC0E32002B5A13 /* SpatialSelf.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SpatialSelf.xcodeproj; sourceTree = "<group>"; };
 		F1D05A1A0000000000000002 /* iOSSpatialSelf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSSpatialSelf.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1D05A1A0000000000000020 /* Self (iOS VM) */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Self (iOS VM)"; path = "/Users/ungar/self/vms/OurSelf/self64/cmake-build-ios-lib/Self.xcodeproj"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -110,6 +119,7 @@
 			files = (
 				F1D05A1A000000000000000C /* Views in Frameworks */,
 				F1D05A1A000000000000000D /* DavesUtilities in Frameworks */,
+				F1D05A1A0000000000000023 /* libSelfVM-ios.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,6 +175,7 @@
 				BC8FD3422FC68F8B007157C8 /* Self (macOS VM) */,
 				BCD26E402FBC04AA002B5A13 /* SpatialSelf */,
 				AABB001000000000000000E1 /* Self (visionOS VM) */,
+				F1D05A1A0000000000000020 /* Self (iOS VM) */,
 				BC8FD32D2FC68EA7007157C8 /* MacSpatialSelf */,
 				BC5A1ED0000000000000A001 /* Shared */,
 				F1D05A1A0000000000000009 /* iOSSpatialSelf */,
@@ -185,6 +196,14 @@
 		};
 		BCD272502FBC0E32002B5A13 /* Products */ = {
 			isa = PBXGroup;
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F1D05A1A0000000000000024 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F1D05A1A0000000000000022 /* libSelfVM-ios.a */,
+			);
 			name = Products;
 			sourceTree = "<group>";
 		};
@@ -301,6 +320,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = F1D05A1A0000000000000024 /* Products */;
+					ProjectRef = F1D05A1A0000000000000020 /* Self (iOS VM) */;
+				},
+				{
 					ProductGroup = BC275C3D2FC69A4900A1ABB3 /* Products */;
 					ProjectRef = BC8FD3422FC68F8B007157C8 /* Self (macOS VM) */;
 				},
@@ -351,6 +374,13 @@
 			fileType = archive.ar;
 			path = "libSelfVM-macos.a";
 			remoteRef = BC655B772FC69E6300336045 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F1D05A1A0000000000000022 /* libSelfVM-ios.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libSelfVM-ios.a";
+			remoteRef = F1D05A1A0000000000000021 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -705,6 +735,7 @@
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"-lc++",
+					"-lncurses",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.selflanguage.iOSSpatialSelf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -742,6 +773,7 @@
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"-lc++",
+					"-lncurses",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.selflanguage.iOSSpatialSelf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
