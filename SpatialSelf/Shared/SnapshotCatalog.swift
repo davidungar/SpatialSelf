@@ -90,6 +90,19 @@ extension SnapshotCatalog {
     let name = baseName.hasSuffix(".snap") ? baseName : baseName + ".snap"
     return saveDir.appendingPathComponent(name).path
   }
+
+  /// Copy an externally-picked snapshot (from a file dialog) into the writable sandbox while
+  /// its security scope is held, and return the resulting stable absolute path for the VM.
+  static func stageExternalSnapshot(at url: URL) throws -> String {
+    let accessed = url.startAccessingSecurityScopedResource()
+    defer { if accessed { url.stopAccessingSecurityScopedResource() } }
+    let dst = sandboxSnapshotsDir.appendingPathComponent(url.lastPathComponent)
+    if FileManager.default.fileExists(atPath: dst.path) {
+      try FileManager.default.removeItem(at: dst)
+    }
+    try FileManager.default.copyItem(at: url, to: dst)
+    return dst.path
+  }
 }
 
 // MARK: - URL convenience

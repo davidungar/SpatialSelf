@@ -10,7 +10,6 @@
 #if os(macOS)
 
 import SwiftUI
-import Views   // ReusableViews — showingTypeName
 
 struct BridgeTestView: View {
     var body: some View {
@@ -29,7 +28,6 @@ struct BridgeTestView: View {
         .padding(40)
         .frame(minWidth: 340, minHeight: 200)
         .onAppear { BridgeLauncher.shared.start() }
-        .showingTypeName(Self.self)
     }
 }
 

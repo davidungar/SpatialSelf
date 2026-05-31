@@ -34,6 +34,5 @@ struct SelfShellView<Accessory: View>: View {
         }, accessory: accessory)
       }
     }
-    .showingTypeName(Self.self)
   }
 }

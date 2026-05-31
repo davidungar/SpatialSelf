@@ -13,7 +13,6 @@
 //
 
 import SwiftUI
-import Views   // ReusableViews — showingTypeName
 
 struct SelfRootView: View {
   private enum Mode {
@@ -36,7 +35,6 @@ struct SelfRootView: View {
 #endif
       }
     }
-    .showingTypeName(Self.self)
   }
 
   /// The "open the bridge test" affordance, shown beneath the start screen on
@@ -44,7 +42,6 @@ struct SelfRootView: View {
   @ViewBuilder private var bridgeButton: some View {
 #if os(macOS)
     Button("Bridge test (E.2)…") { mode = .bridge }
-      .padding(.top, 8)
 #endif
   }
 }
