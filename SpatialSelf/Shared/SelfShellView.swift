@@ -28,12 +28,12 @@ struct SelfShellView<Accessory: View>: View {
         Divider()
         SelfRunningControls()
       } else {
-        SnapshotLaunchView { snapshotPath in
+        SnapshotLaunchView(onChoose: { snapshotPath in
           SelfTerminalLauncher.shared.start(snapshotPath: snapshotPath)
           vmStarted = true
-        }
-        accessory()
+        }, accessory: accessory)
       }
     }
+    .showingTypeName(Self.self)
   }
 }

@@ -332,6 +332,10 @@
 					ProjectRef = AABB001000000000000000E1 /* Self (visionOS VM) */;
 				},
 				{
+					ProductGroup = BC2759832FC69A4900A1ABB3 /* Products */;
+					ProjectRef = BC2759822FC69A4900A1ABB3 /* SpatialSelf.xcodeproj */;
+				},
+				{
 					ProductGroup = BCD272502FBC0E32002B5A13 /* Products */;
 					ProjectRef = BCD2724F2FBC0E32002B5A13 /* SpatialSelf.xcodeproj */;
 				},
@@ -346,10 +350,6 @@
 				{
 					ProductGroup = BC1A1F452FBD408B002C1CA9 /* Products */;
 					ProjectRef = BC1A1F442FBD408B002C1CA9 /* SpatialSelf.xcodeproj */;
-				},
-				{
-					ProductGroup = BC2759832FC69A4900A1ABB3 /* Products */;
-					ProjectRef = BC2759822FC69A4900A1ABB3 /* SpatialSelf.xcodeproj */;
 				},
 			);
 			projectRoot = "";

@@ -10,6 +10,7 @@
 //
 
 import SwiftUI
+import Views   // ReusableViews — showingTypeName
 
 struct SelfRunningControls: View {
   private let catalog = SnapshotCatalog.current
@@ -25,6 +26,7 @@ struct SelfRunningControls: View {
     .padding(.horizontal, 8)
     .padding(.vertical,   6)
     .sheet(isPresented: $showSaveSheet) { saveSheet }
+    .showingTypeName(Self.self)
   }
 
   // MARK: - Save sheet

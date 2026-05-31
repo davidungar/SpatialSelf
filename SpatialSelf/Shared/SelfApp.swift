@@ -11,6 +11,14 @@ import SwiftUI
 
 @main
 struct SelfApp: App {
+  init() {
+#if os(macOS)
+    // Suppress App Nap on AC so a backgrounded Volume's VM animation stays smooth; on
+    // battery, let it throttle. See AppNapManager. (No-op on visionOS — no App Nap there.)
+    AppNapManager.shared.start()
+#endif
+  }
+
   var body: some Scene {
     WindowGroup {
       SelfRootView()

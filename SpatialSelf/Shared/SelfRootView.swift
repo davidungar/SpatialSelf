@@ -13,6 +13,7 @@
 //
 
 import SwiftUI
+import Views   // ReusableViews — showingTypeName
 
 struct SelfRootView: View {
   private enum Mode {
@@ -25,14 +26,17 @@ struct SelfRootView: View {
   @State private var mode: Mode = .terminal
 
   var body: some View {
-    switch mode {
-    case .terminal:
-      SelfShellView { bridgeButton }
+    Group {
+      switch mode {
+      case .terminal:
+        SelfShellView { bridgeButton }
 #if os(macOS)
-    case .bridge:
-      BridgeTestView()   // launches BridgeLauncher.start() on appear
+      case .bridge:
+        BridgeTestView()   // launches BridgeLauncher.start() on appear
 #endif
+      }
     }
+    .showingTypeName(Self.self)
   }
 
   /// The "open the bridge test" affordance, shown beneath the start screen on
