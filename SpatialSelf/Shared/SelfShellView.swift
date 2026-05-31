@@ -11,6 +11,12 @@ import SwiftUI
 import Views
 
 struct SelfShellView<Accessory: View>: View {
+  /// The launch screen is content-sized (the window hugs its button row), but the terminal is
+  /// an open-ended scroll region with no intrinsic content size to derive from — so we pick a
+  /// comfortable default for the window to open at once the VM boots. Not magic: an intentional
+  /// "first run" size; the user can resize freely afterward.
+  private static var terminalDefaultSize: CGSize { CGSize(width: 900, height: 1050) }
+
   @State private var vmStarted = false
   @ViewBuilder private let accessory: () -> Accessory
 
@@ -34,5 +40,9 @@ struct SelfShellView<Accessory: View>: View {
         }, accessory: accessory)
       }
     }
+    // Once the VM boots, give the content-sized window the terminal's default size; before
+    // that the launch screen hugs its button row (no dead space, no number needed).
+    .frame(idealWidth:  vmStarted ? Self.terminalDefaultSize.width  : nil,
+           idealHeight: vmStarted ? Self.terminalDefaultSize.height : nil)
   }
 }

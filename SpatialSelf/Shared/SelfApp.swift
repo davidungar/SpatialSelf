@@ -23,6 +23,12 @@ struct SelfApp: App {
     WindowGroup {
       SelfRootView()
     }
+#if os(macOS)
+    // Size the window to its content: the launch screen hugs its button row (no dead space),
+    // and the running terminal grows to the ideal size it pins in SelfShellView.
+    .windowResizability(.contentSize)
+#else
     .defaultSize(width: 900, height: 1050)
+#endif
   }
 }

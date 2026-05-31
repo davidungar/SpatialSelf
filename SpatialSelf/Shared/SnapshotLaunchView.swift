@@ -12,6 +12,7 @@
 
 import SwiftUI
 import UniformTypeIdentifiers   // UTType
+import DavesUtilities            // .emphasized
 
 struct SnapshotLaunchView<Accessory: View>: View {
   /// Called with the chosen snapshot path, or nil to start a fresh world.
@@ -35,7 +36,6 @@ struct SnapshotLaunchView<Accessory: View>: View {
 
   var body: some View {
     VStack(spacing: 10) {
-      Text("Self").font(.title2.bold())
       if let latest = entries.first { populated(latest) }
       else                          { emptyState }
       if let pickerError {
@@ -61,16 +61,19 @@ struct SnapshotLaunchView<Accessory: View>: View {
   @ViewBuilder private func populated(_ latest: SnapshotCatalog.Entry) -> some View {
     actionRow(latest)
     if let warning = staleness.warning {
-      Text(warning).font(.caption).foregroundStyle(.orange).multilineTextAlignment(.center)
+      Text(warning)
+        .font(.callout.bold())
+        .foregroundStyle(.red)
+        .multilineTextAlignment(.center)
     }
-    otherSnapshots
   }
 
-  /// Top row: launch the newest snapshot, start fresh, and the host accessory.
+  /// Top row: launch the newest snapshot, browse for others, start fresh, and the host accessory.
   @ViewBuilder private func actionRow(_ latest: SnapshotCatalog.Entry) -> some View {
     HStack(spacing: 12) {
       Button("Launch \(latest.name)") { onChoose(latest.url.path) }
         .keyboardShortcut(.defaultAction)
+      otherSnapshots
       startWithoutSnapshotButton
       accessory()
     }
