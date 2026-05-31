@@ -13,6 +13,8 @@
 		BC655B7A2FC69E7D00336045 /* DavesUtilities in Frameworks */ = {isa = PBXBuildFile; productRef = BC655B792FC69E7D00336045 /* DavesUtilities */; };
 		BC655B7B2FC69E8C00336045 /* libSelfVM-macos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC655B782FC69E6300336045 /* libSelfVM-macos.a */; };
 		BC655B7D2FC69E9C00336045 /* Views in Frameworks */ = {isa = PBXBuildFile; productRef = BC655B7C2FC69E9C00336045 /* Views */; };
+		F1D05A1A000000000000000C /* Views in Frameworks */ = {isa = PBXBuildFile; productRef = F1D05A1A000000000000000A /* Views */; };
+		F1D05A1A000000000000000D /* DavesUtilities in Frameworks */ = {isa = PBXBuildFile; productRef = F1D05A1A000000000000000B /* DavesUtilities */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,7 @@
 		BC8FD3422FC68F8B007157C8 /* Self (macOS VM) */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Self (macOS VM)"; path = "/Users/ungar/self/vms/OurSelf/self64/cmake-build-macos-lib/Self.xcodeproj"; sourceTree = "<absolute>"; };
 		BCD26E3E2FBC04AA002B5A13 /* VisionSpatialSelf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VisionSpatialSelf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCD2724F2FBC0E32002B5A13 /* SpatialSelf.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SpatialSelf.xcodeproj; sourceTree = "<group>"; };
+		F1D05A1A0000000000000002 /* iOSSpatialSelf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSSpatialSelf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -73,6 +76,11 @@
 			path = SpatialSelf;
 			sourceTree = "<group>";
 		};
+		F1D05A1A0000000000000009 /* iOSSpatialSelf */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = iOSSpatialSelf;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +101,15 @@
 				AABB001000000000000000B1 /* Views in Frameworks */,
 				AABB001000000000000000B2 /* DavesUtilities in Frameworks */,
 				BC655B6F2FC69E6200336045 /* libSelfVM-visionos.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1D05A1A0000000000000004 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1D05A1A000000000000000C /* Views in Frameworks */,
+				F1D05A1A000000000000000D /* DavesUtilities in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,6 +167,7 @@
 				AABB001000000000000000E1 /* Self (visionOS VM) */,
 				BC8FD32D2FC68EA7007157C8 /* MacSpatialSelf */,
 				BC5A1ED0000000000000A001 /* Shared */,
+				F1D05A1A0000000000000009 /* iOSSpatialSelf */,
 				BC275C4F2FC69B4900A1ABB3 /* Frameworks */,
 				BCD26E3F2FBC04AA002B5A13 /* Products */,
 			);
@@ -160,6 +178,7 @@
 			children = (
 				BCD26E3E2FBC04AA002B5A13 /* VisionSpatialSelf.app */,
 				BC8FD32C2FC68EA7007157C8 /* MacSpatialSelf.app */,
+				F1D05A1A0000000000000002 /* iOSSpatialSelf.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -222,6 +241,31 @@
 			productReference = BCD26E3E2FBC04AA002B5A13 /* VisionSpatialSelf.app */;
 			productType = "com.apple.product-type.application";
 		};
+		F1D05A1A0000000000000001 /* iOSSpatialSelf */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F1D05A1A0000000000000006 /* Build configuration list for PBXNativeTarget "iOSSpatialSelf" */;
+			buildPhases = (
+				F1D05A1A0000000000000003 /* Sources */,
+				F1D05A1A0000000000000004 /* Frameworks */,
+				F1D05A1A0000000000000005 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				BC5A1ED0000000000000A001 /* Shared */,
+				F1D05A1A0000000000000009 /* iOSSpatialSelf */,
+			);
+			name = iOSSpatialSelf;
+			packageProductDependencies = (
+				F1D05A1A000000000000000A /* Views */,
+				F1D05A1A000000000000000B /* DavesUtilities */,
+			);
+			productName = iOSSpatialSelf;
+			productReference = F1D05A1A0000000000000002 /* iOSSpatialSelf.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -236,6 +280,9 @@
 						CreatedOnToolsVersion = 26.5;
 					};
 					BCD26E3D2FBC04AA002B5A13 = {
+						CreatedOnToolsVersion = 26.5;
+					};
+					F1D05A1A0000000000000001 = {
 						CreatedOnToolsVersion = 26.5;
 					};
 				};
@@ -286,6 +333,7 @@
 			targets = (
 				BCD26E3D2FBC04AA002B5A13 /* VisionSpatialSelf */,
 				BC8FD32B2FC68EA7007157C8 /* MacSpatialSelf */,
+				F1D05A1A0000000000000001 /* iOSSpatialSelf */,
 			);
 		};
 /* End PBXProject section */
@@ -322,6 +370,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F1D05A1A0000000000000005 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -333,6 +388,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		BCD26E3A2FBC04AA002B5A13 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1D05A1A0000000000000003 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -621,6 +683,80 @@
 			};
 			name = Release;
 		};
+		F1D05A1A0000000000000007 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VP33SENQ3F;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "$(HOME)/self/vms/OurSelf/self64/vm64/build_support/embed";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.selflanguage.iOSSpatialSelf;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "SpatialSelf/SpatialSelf-Bridging-Header.h";
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F1D05A1A0000000000000008 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VP33SENQ3F;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "$(HOME)/self/vms/OurSelf/self64/vm64/build_support/embed";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.selflanguage.iOSSpatialSelf;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "SpatialSelf/SpatialSelf-Bridging-Header.h";
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -651,6 +787,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		F1D05A1A0000000000000006 /* Build configuration list for PBXNativeTarget "iOSSpatialSelf" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1D05A1A0000000000000007 /* Debug */,
+				F1D05A1A0000000000000008 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -669,6 +814,14 @@
 		BC655B7C2FC69E9C00336045 /* Views */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Views;
+		};
+		F1D05A1A000000000000000A /* Views */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Views;
+		};
+		F1D05A1A000000000000000B /* DavesUtilities */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DavesUtilities;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

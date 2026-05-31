@@ -55,7 +55,7 @@ struct SnapshotLaunchView: View {
     VStack(spacing: 12) {
       Text("No snapshots in \(catalog.snapshotsDir.path)")
         .font(.callout).foregroundStyle(.secondary).multilineTextAlignment(.center)
-      Button("Open snapshot…") { showFilePicker = true }
+      secondaryActions
     }
   }
 
@@ -65,8 +65,17 @@ struct SnapshotLaunchView: View {
         Button { selected = entry } label: { Text(entry.name) }
       }
       Divider()
-      Button("Open file…") { showFilePicker = true }
+      secondaryActions
     }
+  }
+
+  /// Secondary launch choices — open an arbitrary snapshot file, or boot a fresh
+  /// world. Shared by the empty state (inline buttons) and the "Other…" override
+  /// menu so a new choice is added in exactly one place; a `Button` renders both
+  /// inline and inside a `Menu`.
+  @ViewBuilder private var secondaryActions: some View {
+    Button("Open snapshot…")    { showFilePicker = true }
+    Button("Start fresh world") { onChoose(nil) }
   }
 
   // MARK: - State

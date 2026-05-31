@@ -40,6 +40,7 @@ struct SnapshotStartView: View {
         ) { group in
           if let picked = group.files.first { stageAndLaunch(picked) }
         }
+        Button("Start fresh world") { onChoose(nil) }
       }
 
       if let err {

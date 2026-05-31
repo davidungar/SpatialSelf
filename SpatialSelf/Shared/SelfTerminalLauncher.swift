@@ -43,13 +43,30 @@ final class SelfTerminalLauncher {
     let args = ["Self"]
 //       + ["-t"]
     + (snapshotPath.map { ["-s", $0] } ?? []) // read initial world from the chosen snapshot
-    + CommandLine.arguments.dropFirst()       // pass any extra argv down to the VM
+    + Self.passthroughArgs()                  // extra argv, minus Xcode's injected debug flags
 
     SelfVM.launch(threadName: "Self VM",
                   stdin:  io.stdinReadFD,
                   stdout: io.outputFD(for: OutputStream.selfStdout),
                   stderr: io.outputFD(for: OutputStream.selfStderr),
                   args:   args)
+  }
+
+  /// Extra argv to forward to the VM, with Xcode's auto-injected debug flags
+  /// stripped (e.g. `-NSDocumentRevisionsDebugMode YES`, `-ApplePersistenceIgnoreState YES`).
+  /// Xcode adds these when running a macOS app and offers no scheme switch to turn
+  /// them off, so the VM would otherwise warn "Command line argument ... ignored".
+  private static func passthroughArgs() -> [String] {
+    let dropFlagAndValue: Set<String> = ["-NSDocumentRevisionsDebugMode",
+                                         "-ApplePersistenceIgnoreState"]
+    let extra = Array(CommandLine.arguments.dropFirst())
+    var out:  [String] = []
+    var i = 0
+    while i < extra.count {
+      if dropFlagAndValue.contains(extra[i]) { i += 2; continue }  // skip flag + its value
+      out.append(extra[i]); i += 1
+    }
+    return out
   }
 
   /// Send a Self expression to the running VM, echoing it into the transcript so the
