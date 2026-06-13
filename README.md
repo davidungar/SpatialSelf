@@ -105,6 +105,11 @@ SpatialSelf/
    (optional now; needed for future RealityKit work). These resolve as workspace
    packages from `Enchilada.xcworkspace`.
 8. The workspace already references `SpatialSelf/SpatialSelf.xcodeproj`.
+9. In the **MacSpatialSelf** scheme → Run → Arguments → Environment Variables, add
+   `OS_ACTIVITY_MODE = disable` (silences os_log spew in the console). The generated
+   VM project gets this automatically from CMake
+   (`vm64/cmake/mac_osx.cmake` `XCODE_SCHEME_ENVIRONMENT`), but the hand-built
+   SpatialSelf app scheme must set it by hand, so it is lost on every recreation.
 
 ## Running
 
