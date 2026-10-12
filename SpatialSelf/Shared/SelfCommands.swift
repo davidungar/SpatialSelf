@@ -1,3 +1,5 @@
+// Copyright © 2026 David Ungar. All rights reserved.
+
 //
 //  SelfCommands.swift
 //  SpatialSelf (Shared) — Self expressions the host sends to the running VM over stdin.

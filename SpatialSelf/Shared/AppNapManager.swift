@@ -1,3 +1,5 @@
+// Copyright © 2026 David Ungar. All rights reserved.
+
 //
 //  AppNapManager.swift
 //  SpatialSelf (macOS only) — smooth VM animation on AC, frugal on battery.

@@ -1,3 +1,5 @@
+// Copyright © 2026 David Ungar. All rights reserved.
+
 //
 //  SelfRootView.swift
 //  SpatialSelf (Shared) — root of both hosts.

@@ -1,3 +1,5 @@
+// Copyright © 2026 David Ungar. All rights reserved.
+
 //
 //  SelfTerminalLauncher.swift
 //  SpatialSelf (Shared) — interactive terminal launcher for both hosts.

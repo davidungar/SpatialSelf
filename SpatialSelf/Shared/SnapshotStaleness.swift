@@ -1,3 +1,5 @@
+// Copyright © 2026 David Ungar. All rights reserved.
+
 //
 //  SnapshotStaleness.swift
 //  SpatialSelf (Shared) — cheap check: are any `.self` sources newer than the snapshot?

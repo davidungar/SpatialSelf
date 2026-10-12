@@ -1,3 +1,5 @@
+// Copyright © 2026 David Ungar. All rights reserved.
+
 //
 //  SelfVM.swift
 //  SpatialSelf (Shared) — the de-duplicated Self VM launch core.

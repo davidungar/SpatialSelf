@@ -1,3 +1,5 @@
+// Copyright © 2026 David Ungar. All rights reserved.
+
 //
 //  BridgeLauncher.swift
 //  SpatialSelf (Shared) — host-bridge (E.2) launcher. macOS-only.

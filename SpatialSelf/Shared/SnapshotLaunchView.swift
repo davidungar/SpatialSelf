@@ -1,3 +1,5 @@
+// Copyright © 2026 David Ungar. All rights reserved.
+
 //
 //  SnapshotLaunchView.swift
 //  SpatialSelf (Shared) — the default launch screen.

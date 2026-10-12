@@ -1,3 +1,5 @@
+// Copyright © 2026 David Ungar. All rights reserved.
+
 //
 //  SelfRunningControls.swift
 //  SpatialSelf (Shared) — developer affordances shown beneath the running terminal.

@@ -1,3 +1,5 @@
+// Copyright © 2026 David Ungar. All rights reserved.
+
 //
 //  SnapshotCatalog.swift
 //  SpatialSelf (Shared) — locate Self snapshots (and the source tree) for launch.

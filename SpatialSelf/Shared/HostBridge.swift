@@ -1,3 +1,5 @@
+// Copyright © 2026 David Ungar. All rights reserved.
+
 //
 //  HostBridge.swift
 //  SpatialSelf (Shared) — host-bridge (E.2). macOS-only.

@@ -1,3 +1,5 @@
+// Copyright © 2026 David Ungar. All rights reserved.
+
 //
 //  SpatialSelf-Bridging-Header.h
 //  Exposes the Self VM's C entry points (self_vm_main,

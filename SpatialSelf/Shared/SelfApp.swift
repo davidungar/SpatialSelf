@@ -1,3 +1,5 @@
+// Copyright © 2026 David Ungar. All rights reserved.
+
 //
 //  SelfApp.swift
 //  SpatialSelf (Shared) — entry point for both hosts.

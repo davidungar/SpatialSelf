@@ -1,3 +1,5 @@
+// Copyright © 2026 David Ungar. All rights reserved.
+
 //
 //  OutputStream.swift
 //  SpatialSelf — copied verbatim from Self_1 so Terminal_IO_Redirector
